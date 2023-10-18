@@ -24,7 +24,7 @@ public class SalaDAO {
     ResultSet rs;
     SalaPOJO sal = new SalaPOJO();
     int p = 0;
-    
+   
     public List listarsala() {
         
         ArrayList <SalaPOJO>list=new ArrayList<>();
@@ -58,17 +58,45 @@ public class SalaDAO {
         
     }
     
+    public SalaPOJO list(int id) {
+   
     
-    public boolean addsala(SalaPOJO spo) {
+    String sql = "SELECT * FROM museum.tblsalas WHERE salId="+id;
+    
+     try{
+          con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            
+            while(rs.next()){
+
+                
+                sal.setSalId(rs.getInt("salId"));
+                sal.setSalNombre(rs.getString("salNombre"));
+                sal.setSalEdificio(rs.getString("salEdificio"));
+                sal.setSalPlanta(rs.getString("salPlanta"));
+                
+            }
+     }catch(SQLException e){
+                    
+                    }
+        return sal;
+    
+    
+}
+    
+    
+    
+    public boolean addsala(SalaPOJO so) {
         
         String sql= "INSERT INTO museum.tblsalas(salId,salNombre,salEdificio,salPlanta)"
-                + "VALUES( '" + spo.getSalId() + "' ,'" + spo.getSalNombre()+ "' "
-                + ",'" + spo.getSalEdificio()+ "' ,'" + spo.getSalPlanta()+ "' ,);" ;
+                + "VALUES( '" + so.getSalId() + "' ,'" + so.getSalNombre()+ "' "
+                + ",'" + so.getSalEdificio()+ "' ,'" + so.getSalPlanta()+ "');" ;
         
         try{
           con=cn.getConnection();
             ps=con.prepareStatement(sql);
-            rs=ps.executeQuery(); 
+            ps.executeUpdate(); 
             
             
         }catch(SQLException e) {
@@ -80,6 +108,28 @@ public class SalaDAO {
         
     }
     
-    
+     public boolean editsala(SalaPOJO so) {
+       String sql= "UPDATE museum.tblsalas SET  salNombre = '"+so.getSalNombre()+"',salEdificio ='"+ so.getSalEdificio()+""
+               + "',salPlanta ='" + so.getSalPlanta()+"'WHERE salId ="+so.getSalId();
+       try {
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return false;
+    }
+     
+     
+     public boolean eliminarsala(int id) {
+        String sql="DELETE FROM museum.tblsalas WHERE salId = "+id;
+        try {
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return false;
+    }
     
 }
