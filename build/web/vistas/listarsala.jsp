@@ -19,7 +19,7 @@
             var input, filter, table, tr, td, i, txtValue;
             input = document.getElementById("searchInput");
             filter = input.value.toUpperCase();
-            table = document.getElementById("aprendicesTable");
+            table = document.getElementById("salaTable");
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
@@ -52,7 +52,7 @@
         </div>
         <br>
 
-        <table class="table table-bordered" border="1">
+        <table class="table table-bordered" id="salaTable">
             <thead>
                 <tr>
                     <th class="text-center">Nis</th>
