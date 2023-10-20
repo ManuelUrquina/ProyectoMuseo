@@ -29,7 +29,7 @@ public List listarartista() {
         
         ArrayList <ArtistaPOJO>list=new ArrayList<>();
         
-        String sql = "SELECT * FROM museum.tblsalas";
+        String sql = "SELECT * FROM museum.tblartistas";
         
         try{
           con=cn.getConnection();
@@ -64,7 +64,7 @@ public List listarartista() {
         
         ArrayList <ArtistaPOJO>list=new ArrayList<>();
         
-        String sql = "SELECT * FROM museum.tblsalas WHERE artId ="+id;
+        String sql = "SELECT * FROM museum.tblartistas WHERE artId ="+id;
         
         try{
           con=cn.getConnection();

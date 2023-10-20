@@ -4,6 +4,8 @@
  */
 package com.adso.Controlador;
 
+import com.adso.ModeloDAO.ArtistaDAO;
+import com.adso.clasesPojo.ArtistaPOJO;
 import com.adso.conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +27,11 @@ import javax.servlet.http.Part;
  *
  * @author M4nu3h
  */
+
+@WebServlet(name = "ControladorArtista", urlPatterns = {"/CcntroladorArtista"}
+)
+
+
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
         maxFileSize = 1024 * 1024 * 10, // 10 MB
@@ -31,6 +39,13 @@ import javax.servlet.http.Part;
 )
 public class ControladorArtista extends HttpServlet {
  String listarArt = "listarartista.jsp";
+ String editArt = "vistas/editartista.jsp";
+ 
+ ArtistaDAO ar = new ArtistaDAO();
+ ArtistaPOJO art = new ArtistaPOJO();
+ 
+ int id;
+ 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -58,18 +73,53 @@ public class ControladorArtista extends HttpServlet {
     }
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        String acceso = "";
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        processRequest(request, response);
+           String acceso = "";
         String action = request.getParameter("accion");
 
         if (action.equalsIgnoreCase("listarArt")) {
             acceso = listarArt;
-        }
+        }else if (action.equalsIgnoreCase("eliminar")) {
+            id = Integer.parseInt(request.getParameter("id"));
+            art.setArtId(id);
+            ar.eliminarartista(id);
+            acceso = listarArt;
+        } else if (action.equalsIgnoreCase("editar")) {
+            request.setAttribute("idper", request.getParameter("id"));
+            acceso = editArt;
+        } else if (action.equalsIgnoreCase("ActualizarArtista")) {
+            
+            String id = request.getParameter("txtID");
+            String codart = request.getParameter("txtcodigoartista");
+            String apell = request.getParameter("txtapellido");
+            String nomb = request.getParameter("txtnombre");
+            String lugnac = request.getParameter("txtlugarnacim");
+            String fecnacim = request.getParameter("txtfechanacimiento");
+            String foto = request.getParameter("file");
+
+
+
+            art.setArtId(Integer.parseInt(id));
+            art.setArtCodigoArtista(Integer.parseInt(codart));
+            art.setArtapellidos(apell);
+            art.setArtnombre(nomb);
+            art.setArtlugarNacimiento(lugnac);
+            art.setArtfechaNacimiento(fecnacim);
+            art.setArtPathImagen(foto);
+ 
+            ar.editartist(art);
+            acceso = listarArt;
+        
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
     
+        
+        
+        
+        
+        
 }
         
     @Override
@@ -88,7 +138,7 @@ public class ControladorArtista extends HttpServlet {
         PreparedStatement ps;
 
 
-        String relativePath = "imagenes/";
+        String relativePath = "imagnees/";
 
         Part filePart = request.getPart("file");
         String fileName = filePart.getSubmittedFileName();

@@ -14,32 +14,33 @@
     <body>
         <h1>Hello World!</h1>
 
-        <<form action="CcntroladorArtista" method="POST" enctype="multipart/form-data">
+        <form action="CcntroladorArtista" method="POST" enctype="multipart/form-data">
             
             <div class="form-group">
                 <label for="txtID">NIS Artista:</label>
-                <input type="number" class="form-control" id="codigoartista" name="codigoartista" required>
+                <input type="number" class="form-control" id="codigoartista" name="txtID" required>
             </div>
+            
             <div class="form-group">
                 <label for="txtcodigoartista">Codigo Artista:</label>
-                <input type="number" class="form-control" id="codigoartista" name="codigoartista" required>
+                <input type="number" class="form-control" id="codigoartista" name="txtcodigoartista" required>
             </div>
             <div class="form-group">
                 <label for="txtapellido">Apellido:</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" required>
+                <input type="text" class="form-control" id="apellido" name="txtapellido" required>
             </div>
             <div class="form-group">                   
                 <label for="txtnombre">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                <input type="text" class="form-control" id="nombre" name="txtnombre" required>
             </div>
             
             <div class="form-group">
                 <label for="txtlugarnacim">Lugar:</label>
-                <input type="text" class="form-control" id="lugar" name="lugar" required>
+                <input type="text" class="form-control" id="lugar" name="txtlugarnacim" required>
             </div>                
             <div class="form-group">
                 <label for="txtfechanacimiento">Fecha de nacimiento</label>
-                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" required>
+                <input type="date" class="form-control" id="fechanacimiento" name="txtfechanacimiento" required>
             </div>
             <div class="form-group">
                 <label for="imagen">Foto</label>
