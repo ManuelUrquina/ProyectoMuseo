@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/web/listarartista.jsp</file>
+            <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/web/addartista.jsp</file>
             <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/web/vistas/listarsala.jsp</file>
-            <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/src/java/com/adso/ModeloDAO/SalaDAO.java</file>
             <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/src/java/com/adso/ModeloDAO/SalaDAO.java</file>
+            <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/src/java/com/adso/ModeloDAO/ArtistaDAO.java</file>
             <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/web/vistas/addsala.jsp</file>
+            <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/src/java/com/adso/Controlador/ControladorArtista.java</file>
+            <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/src/java/com/adso/clasesPojo/ArtistaPOJO.java</file>
+            <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/web/vistas/editartista.jsp</file>
             <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/src/java/com/adso/Controlador/ControladorSala.java</file>
             <file>file:/C:/Users/M4nu3h/Documents/GitHub/ProyectoMuseo/web/index.html</file>
         </group>
