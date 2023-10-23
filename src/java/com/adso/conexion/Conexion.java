@@ -18,7 +18,7 @@ public class Conexion {
     public Conexion(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:1900/museum?serverTimezone=UTC","root","2556229");            
+            con=DriverManager.getConnection("jdbc:mysql://localhost:1900/museum?serverTimezone=UTC", "root", "2556229");            
         } catch (ClassNotFoundException | SQLException e) {
             System.err.println("Error"+e);
         }

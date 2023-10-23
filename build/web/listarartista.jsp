@@ -52,7 +52,7 @@
 
     </head>
     <body>
-        <a class="btn btn-success" href="addartista.jsp">Agregar Nueva Sala</a>
+        <a class="btn btn-success" href="addartista.jsp">Agregar Nuevo Artista</a>
         <br>
         <br>
         <div class="input-wrapper ml-4 mt-2">

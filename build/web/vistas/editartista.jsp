@@ -16,23 +16,45 @@
     <body>
               <%
               ArtistaDAO dao=new ArtistaDAO();
-              int id=Integer.parseInt((String)request.getAttribute("idper"));
-              ArtistaPOJO p=(ArtistaPOJO)dao.listarartist(id);
+              int id=Integer.parseInt((String)request.getAttribute("idart"));
+              ArtistaPOJO art=(ArtistaPOJO)dao.listarartist(id);
           %>
             <h1>Modificar Persona</h1>
-                <form action="controladorSala">
-                    Nis:<br>
-                    <input class="form-control" type="text" name="txtID" value="<%= p.getSalId() %>" ><br>
-                    Nombre de la Sala:<br>
-                    <input class="form-control" type="text" name="txtNom" value="<%= p.getSalNombre() %>"><br>
-                    Edificio donde esté la sala: <br>
-                    <input class="form-control" type="text" name="txtEdif" value="<%= p.getSalEdificio()%>"><br>
-                    Planta:  <br>
-                    <input class="form-control" type="text" name="txtPlan" value="<%= p.getSalPlanta()%>"><br>
-                    <input class="btn btn-primary" type="submit" name="accion" value="Actualizar">
-                    
-                    <input type="hidden" name="txtID" value="<%= p.getSalId()%>">
-                    <a href="controladorSala?accion=listarObra">Regresar</a>
+                 <form action="CcntroladorArtista" method="POST" enctype="multipart/form-data">
+            
+            <div class="form-group">
+                <label for="txtID">NIS Artista:</label>
+                <input type="number" class="form-control" id="codigoartista" name="txtID" value="<%= art.getArtId()%>" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="txtcodigoartista">Codigo Artista:</label>
+                <input type="number" class="form-control" id="codigoartista" name="txtcodigoartista" value="<%= art.getArtCodigoArtista()%>" required>
+            </div>
+            <div class="form-group">
+                <label for="txtapellido">Apellido:</label>
+                <input type="text" class="form-control" id="apellido" name="txtapellido" value="<%= art.getArtapellidos()%>" required>
+            </div>
+            <div class="form-group">                   
+                <label for="txtnombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="txtnombre" value="<%= art.getArtnombre()%>" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="txtlugarnacim">Lugar:</label>
+                <input type="text" class="form-control" id="lugar" name="txtlugarnacim" value="<%= art.getArtlugarNacimiento()%>" required>
+            </div>                
+            <div class="form-group">
+                <label for="txtfechanacimiento">Fecha de nacimiento</label>
+                <input type="date" class="form-control" id="fechanacimiento" name="txtfechanacimiento" value="<%= art.getArtfechaNacimiento()%>" required>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Foto</label>
+                <input type="file" name="file" accept="image/jpeg" value="<%= art.getArtPathImagen()%>">
+            </div>
+            <br>
+            <input type="hidden" name="txtID" value="<%= art.getArtId()%>">
+            <button type="submit" name="accion" class="btn btn-primary" value="ActualizarArtista">Enviar</button>
                    </form> 
             
     </body>

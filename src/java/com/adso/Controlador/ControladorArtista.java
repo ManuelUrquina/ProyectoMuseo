@@ -28,9 +28,6 @@ import javax.servlet.http.Part;
  * @author M4nu3h
  */
 
-@WebServlet(name = "ControladorArtista", urlPatterns = {"/CcntroladorArtista"}
-)
-
 
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
@@ -38,14 +35,15 @@ import javax.servlet.http.Part;
         maxRequestSize = 1024 * 1024 * 100 // 100 MB
 )
 public class ControladorArtista extends HttpServlet {
- String listarArt = "listarartista.jsp";
- String editArt = "vistas/editartista.jsp";
- 
- ArtistaDAO ar = new ArtistaDAO();
- ArtistaPOJO art = new ArtistaPOJO();
- 
- int id;
- 
+
+    String listarArt = "listarartista.jsp";
+    String editArt = "vistas/editartista.jsp";
+
+    ArtistaDAO ar = new ArtistaDAO();
+    ArtistaPOJO art = new ArtistaPOJO();
+
+    int id;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -71,35 +69,31 @@ public class ControladorArtista extends HttpServlet {
 //            out.println("</html>");
 //        }
     }
-    
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
-           String acceso = "";
+        String acceso = "";
         String action = request.getParameter("accion");
 
         if (action.equalsIgnoreCase("listarArt")) {
             acceso = listarArt;
-        }else if (action.equalsIgnoreCase("eliminar")) {
+        } else if (action.equalsIgnoreCase("eliminar")) {
             id = Integer.parseInt(request.getParameter("id"));
             art.setArtId(id);
             ar.eliminarartista(id);
             acceso = listarArt;
         } else if (action.equalsIgnoreCase("editar")) {
-            request.setAttribute("idper", request.getParameter("id"));
+            request.setAttribute("idart", request.getParameter("id"));
             acceso = editArt;
         } else if (action.equalsIgnoreCase("ActualizarArtista")) {
-            
+
             String id = request.getParameter("txtID");
             String codart = request.getParameter("txtcodigoartista");
             String apell = request.getParameter("txtapellido");
             String nomb = request.getParameter("txtnombre");
             String lugnac = request.getParameter("txtlugarnacim");
             String fecnacim = request.getParameter("txtfechanacimiento");
-            String foto = request.getParameter("file");
-
-
 
             art.setArtId(Integer.parseInt(id));
             art.setArtCodigoArtista(Integer.parseInt(codart));
@@ -107,36 +101,29 @@ public class ControladorArtista extends HttpServlet {
             art.setArtnombre(nomb);
             art.setArtlugarNacimiento(lugnac);
             art.setArtfechaNacimiento(fecnacim);
-            art.setArtPathImagen(foto);
- 
+
             ar.editartist(art);
             acceso = listarArt;
-        
+        }
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
-    
-        
-        
-        
-        
-        
-}
-        
+
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
         String idt = request.getParameter("txtID");
-        String codigoartista = request.getParameter("txtcodigoartista");     
+        String codigoartista = request.getParameter("txtcodigoartista");
         String apellido = request.getParameter("txtapellido");
         String nombre = request.getParameter("txtnombre");
         String lugarnacim = request.getParameter("txtlugarnacim");
         String fechanacimiento = request.getParameter("txtfechanacimiento");
 
-        Conexion cn=new Conexion();
+        Conexion cn = new Conexion();
         Connection con;
         PreparedStatement ps;
-
 
         String relativePath = "imagnees/";
 
@@ -144,7 +131,7 @@ public class ControladorArtista extends HttpServlet {
         String fileName = filePart.getSubmittedFileName();
 
         String ext = fileName.substring(fileName.lastIndexOf('.'));
-        
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
         LocalDateTime now = LocalDateTime.now();
         String formattedDateTime = now.format(formatter);
@@ -156,7 +143,6 @@ public class ControladorArtista extends HttpServlet {
         try {
 
             con = cn.getConnection();
-            System.out.println("Conexión a la base de datos exitosa.");
             String sql = "INSERT INTO museum.tblartistas(artId,artCodigoArtista,artapellidos,artnombre,artlugarNacimiento,"
                     + "artfechaNacimiento,artPathImagen)VALUES(?,?,?,?,?,?,?);";
             ps = con.prepareStatement(sql);
@@ -183,9 +169,6 @@ public class ControladorArtista extends HttpServlet {
             System.out.println(e);
         }
     }
-        
-        
-    
 
     /**
      * Returns a short description of the servlet.

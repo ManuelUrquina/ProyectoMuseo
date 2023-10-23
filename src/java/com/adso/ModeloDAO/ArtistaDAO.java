@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.adso.ModeloDAO;
 
 import com.adso.clasesPojo.ArtistaPOJO;
@@ -62,7 +58,6 @@ public List listarartista() {
     
     public ArtistaPOJO listarartist(int id) {
         
-        ArrayList <ArtistaPOJO>list=new ArrayList<>();
         
         String sql = "SELECT * FROM museum.tblartistas WHERE artId ="+id;
         
@@ -95,10 +90,13 @@ public List listarartista() {
     }
     
 public boolean editartist(ArtistaPOJO arp) {
-       String sql= "UPDATE museum.tblartistas SET artCodigoArtista ='"+arp.getArtId()+ "' "
-               + ",artapellidos = '"+arp.getArtapellidos()+ "' ,artnombre = '"+arp.getArtnombre()+ "' "
-               + ",artlugarNacimiento = '"+arp.getArtlugarNacimiento()+ "' ,artfechaNacimiento = '"+arp.getArtfechaNacimiento()+ "'"
-               + ",artPathImagen = '"+arp.getArtPathImagen()+ "' WHERE artId = ;";
+   String sql = "UPDATE museum.tblartistas SET artCodigoArtista = '" + arp.getArtCodigoArtista() + "', "
+        + "artapellidos = '" + arp.getArtapellidos() + "', "
+        + "artnombre = '" + arp.getArtnombre() + "', "
+        + "artlugarNacimiento = '" + arp.getArtlugarNacimiento() + "', "
+        + "artfechaNacimiento = '" + arp.getArtfechaNacimiento() + "', "
+        + "artPathImagen = '" + arp.getArtPathImagen() + "' WHERE artId = " + arp.getArtId() + ";";
+
        try {
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
