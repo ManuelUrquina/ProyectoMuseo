@@ -106,9 +106,10 @@
                     }
                 %> 
 
-        </table>
 
-        <div class="modal " id="VerFotoModal" tabindex="-1" role="dialog" aria-hidden="true">
+        </table>
+ 
+        <div class="modal fade" id="VerFotoModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

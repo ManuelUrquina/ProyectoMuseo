@@ -94,14 +94,17 @@ public class ControladorArtista extends HttpServlet {
             String nomb = request.getParameter("txtnombre");
             String lugnac = request.getParameter("txtlugarnacim");
             String fecnacim = request.getParameter("txtfechanacimiento");
-
+            String foto = request.getParameter("file");
+            
+            
+            
             art.setArtId(Integer.parseInt(id));
             art.setArtCodigoArtista(Integer.parseInt(codart));
             art.setArtapellidos(apell);
             art.setArtnombre(nomb);
             art.setArtlugarNacimiento(lugnac);
             art.setArtfechaNacimiento(fecnacim);
-
+            art.setArtPathImagen(foto);
             ar.editartist(art);
             acceso = listarArt;
         }
