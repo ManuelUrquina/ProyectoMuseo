@@ -20,7 +20,7 @@
               ArtistaPOJO art=(ArtistaPOJO)dao.listarartist(id);
           %>
             <h1>Modificar Persona</h1>
-                 <form action="CcntroladorArtista" method="POST" enctype="multipart/form-data">
+                 <form action="CcntroladorArtista" enctype="multipart/form-data">
             
             <div class="form-group">
                 <label for="txtID">NIS Artista:</label>

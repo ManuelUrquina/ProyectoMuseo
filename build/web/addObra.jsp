@@ -1,7 +1,7 @@
 <%-- 
-    Document   : addartista
-    Created on : 19 oct 2023, 18:29:45
-    Author     : M4nu3h
+    Document   : addObra
+    Created on : 26 oct 2023, 07:05:46
+    Author     : ADSO
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,15 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        
         <title>JSP Page</title>
     </head>
     <body>
-
-        <form action="CcntroladorArtista" method="POST" enctype="multipart/form-data">
+        <form action="controladorObra" method="POST" enctype="multipart/form-data">
             
-            <div class="form-group">
+           <div class="form-group">
                 <label for="txtID">NIS Artista:</label>
                 <input type="number" class="form-control" id="codigoartista" name="txtID" required>
             </div>
@@ -51,5 +48,6 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
 
         </form>
+        
     </body>
 </html>

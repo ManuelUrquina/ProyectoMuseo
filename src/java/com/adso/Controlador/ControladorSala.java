@@ -68,7 +68,7 @@ public class ControladorSala extends HttpServlet {
         String acceso = "";
         String action = request.getParameter("accion");
 
-        if (action.equalsIgnoreCase("listarobra")) {
+        if (action.equalsIgnoreCase("listarsala")) {
             acceso = listar;
         } else if (action.equalsIgnoreCase("add")) {
             acceso = add;

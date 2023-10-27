@@ -58,7 +58,7 @@
                     <th class="text-center">Nis</th>
                     <th class="text-center">Nombre</th>
                     <th class="text-center">Edificio</th>
-                    <th class="text-center">Tipo de documento</th>
+                    <th class="text-center">Planta</th>
                     <th class="text-center">Acciones</th>
 
 

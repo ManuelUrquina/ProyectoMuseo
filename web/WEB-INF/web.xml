@@ -8,6 +8,10 @@
         <servlet-name>ControladorArtista</servlet-name>
         <servlet-class>com.adso.Controlador.ControladorArtista</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorObra</servlet-name>
+        <servlet-class>com.adso.Controlador.ControladorObra</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorSala</servlet-name>
         <url-pattern>/controladorSala</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ControladorArtista</servlet-name>
         <url-pattern>/CcntroladorArtista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorObra</servlet-name>
+        <url-pattern>/controladorObra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

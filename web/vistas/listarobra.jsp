@@ -1,19 +1,20 @@
 <%-- 
-    Document   : listarsala
-    Created on : 18 oct 2023, 09:09:41
+    Document   : listarobra
+    Created on : 26 oct 2023, 06:38:26
     Author     : ADSO
 --%>
-<%@page import="com.adso.clasesPojo.SalaPOJO"%>
-<%@page import="com.adso.ModeloDAO.SalaDAO"%>
+
+<%@page import="java.util.Iterator"%>
+<%@page import="com.adso.clasesPojo.ObraArtePojo"%>
 <%@page import="java.util.List"%>
-<%@page import="java.util.Iterator" %>
+<%@page import="com.adso.ModeloDAO.ObraArteDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <title>Sala</title>
+        <title>Obras de Arte</title>
         <script>
         function buscar() {
             var input, filter, table, tr, td, i, txtValue;
@@ -44,7 +45,7 @@
     </script>
     </head>
     <body>
-        <a class="btn btn-success" href="controladorSala?accion=add">Agregar Nueva Sala</a>
+        <a class="btn btn-success" href="controladorObra?accion=add">Agregar Nueva Obra</a>
         <br>
         <br>
         <div class="input-wrapper ml-4 mt-2">
@@ -56,9 +57,14 @@
             <thead>
                 <tr>
                     <th class="text-center">Nis</th>
-                    <th class="text-center">Nombre</th>
-                    <th class="text-center">Edificio</th>
-                    <th class="text-center">Planta</th>
+                    <th class="text-center">Numero de Catalogo</th>
+                    <th class="text-center">Titulo</th>
+                    <th class="text-center">Fecha Realizacion</th>
+                    <th class="text-center">Imagen 1</th>
+                    <th class="text-center">Imagen 2</th>
+                    <th class="text-center">PDF</th>
+                    <th class="text-center">Artista</th>
+                    <th class="text-center">Categoria</th>
                     <th class="text-center">Acciones</th>
 
 
@@ -66,23 +72,28 @@
             </thead>
 
             <%
-                SalaDAO dao = new SalaDAO();
-                List<SalaPOJO> list = dao.listarsala();
-                Iterator<SalaPOJO> iter = list.iterator();
-                SalaPOJO spo = null;
+                ObraArteDAO dao = new ObraArteDAO();
+                List<ObraArtePojo> list = dao.listarobra();
+                Iterator<ObraArtePojo> iter = list.iterator();
+                ObraArtePojo obr = null;
                 while (iter.hasNext()) {
-                    spo = iter.next();
+                    obr = iter.next();
 
             %>
 
             <tbody>
                 <tr>
-                    <td class="text-center"><%= spo.getSalId()%></td>
-                    <td class="text-center"><%= spo.getSalNombre()%></td>
-                    <td class="text-center"><%= spo.getSalEdificio()%></td>
-                    <td class="text-center"><%= spo.getSalPlanta()%></td>
-                    <td class="text-center"><a class="btn btn-warning"  href="controladorSala?accion=editar&id=<%= spo.getSalId()%>" >Editar</a> 
-                        <a class="btn btn-danger" href="controladorSala?accion=eliminar&id=<%= spo.getSalId()%>" 
+                    <td class="text-center"><%= obr.getObrId()%></td>
+                    <td class="text-center"><%= obr.getObrNumCatalogo()%></td>
+                    <td class="text-center"><%= obr.getObrTitulo()%></td>
+                    <td class="text-center"><%= obr.getObrFechaRealizacion()%></td>
+                    <td class="text-center"><%= obr.getObrPathImg1()%></td>
+                    <td class="text-center"><%= obr.getObrPathImg2()%></td>
+                    <td class="text-center"><%= obr.getObrPathPDF()%></td>
+                    <td class="text-center"><%= obr.getTblartistas_artId()%></td>
+                    <td class="text-center"><%= obr.getTblcategoria_catId()%></td>
+                    <td class="text-center"><a class="btn btn-warning"  href="controladorSala?accion=editar&id=<%= obr.getObrId()%>" >Editar</a> 
+                        <a class="btn btn-danger" href="controladorSala?accion=eliminar&id=<%= obr.getObrId()%>" 
                            onclick="return confirm('¿Realmente desea eliminar?')" method="post">Eliminar</a> </td>
 
                 </tr>
@@ -91,6 +102,8 @@
                 %> 
 
         </table>
+    </head>
+    <body>
 
     </body>
 </html>
