@@ -87,15 +87,14 @@
                     <td class="text-center"><%= obr.getObrNumCatalogo()%></td>
                     <td class="text-center"><%= obr.getObrTitulo()%></td>
                     <td class="text-center"><%= obr.getObrFechaRealizacion()%></td>
-                    <td class="text-center"><%= obr.getObrPathImg1()%></td>
-                    <td class="text-center"><%= obr.getObrPathImg2()%></td>
-                    <td class="text-center"><%= obr.getObrPathPDF()%></td>
+                    <td class="text-center"><img src="<%= obr.getObrPathImg1()%>" width="200" height="200"/></td>
+                    <td class="text-center"><img src="<%= obr.getObrPathImg2()%>" width="200" height="200"/></td>
+                    <td class="text-center"><button onclick="abrirPDF()">Ver PDF</button></td>
                     <td class="text-center"><%= obr.getTblartistas_artId()%></td>
                     <td class="text-center"><%= obr.getTblcategoria_catId()%></td>
                     <td class="text-center">
-                        <a class="btn btn-success view-img-btn" data-toggle="modal" data-target="#VerFotoModal" data-img-src="<%= obr.getObrPathImg1()%>">Ver Foto</a>
                         <a class="btn btn-warning"  href="controladorSala?accion=editar&id=<%= obr.getObrId()%>" >Editar</a> 
-                        <a class="btn btn-danger" href="controladorSala?accion=eliminar&id=<%= obr.getObrId()%>" 
+                        <a class="btn btn-danger" href="controladorObra?accion=eliminar&id=<%= obr.getObrId()%>" 
                            onclick="return confirm('¿Realmente desea eliminar?')" method="post">Eliminar</a> </td>
 
                 </tr>
@@ -119,14 +118,12 @@
         </div>
 
 
+        
         <script>
-            $(document).ready(function () {
-                $('.view-img-btn').click(function () {
-                    var imgSrc = $(this).data('img-src');
-                    $('#view-img').attr('src', imgSrc);
-                });
-            });
-        </script>
+  function abrirPDF() {
+    window.open("<%= obr.getObrPathPDF()%>");
+  }
+</script>
     </head>
     <body>
 

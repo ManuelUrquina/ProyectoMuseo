@@ -63,7 +63,10 @@ public class ObraArteDAO {
       
       
       String sql = "INSERT INTO museum.tblobraarte(obrId,obrNumCatalogo,obrTitulo,obrFechaRealizacion,"
-              + "obrPathImg1,obrPathImg2,obrPathPDF,tblartistas_artId,tblcategoria_catId)VALUES(?,?,?,?,?,?,?,?,?);";
+              + "obrPathImg1,obrPathImg2,obrPathPDF,tblartistas_artId,tblcategoria_catId)"
+              + "VALUES('"+ poj.getObrId()+"','"+ poj.getObrNumCatalogo()+"','"+ poj.getObrTitulo()+"',"
+              + "'"+ poj.getObrFechaRealizacion()+"','"+ poj.getObrPathImg1()+"',"
+              + "'"+ poj.getObrPathImg2()+"','"+ poj.getObrPathPDF()+"','"+ poj.getTblartistas_artId()+"','"+ poj.getTblcategoria_catId()+"');";
       
       try {
           
@@ -71,20 +74,7 @@ public class ObraArteDAO {
           
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            ps.setInt(1, poj.getObrId());
-            ps.setString(2, poj.getObrNumCatalogo());
-            ps.setString(3, poj.getObrTitulo());
-            ps.setString(4, poj.getObrFechaRealizacion());
-            ps.setString(5, poj.getObrPathImg1());
-            ps.setString(6, poj.getObrPathImg2());
-            ps.setString(7, poj.getObrPathPDF());
-            ps.setInt(8, poj.getTblartistas_artId());
-            ps.setInt(9, poj.getTblcategoria_catId());
-            
-
-            ps.executeQuery(sql);
+            ps.executeUpdate();
             
             
         } catch (SQLException e) {
@@ -93,7 +83,33 @@ public class ObraArteDAO {
         return true;
     }
       
+     
+  public boolean editObra (ObraArtePojo obrj){
       
+      String sql = "UPDATE museum.tblobraarte SET obrId = ?,obrNumCatalogo = ?,obrTitulo = ?,obrFechaRealizacion = ?,"
+              + "obrPathImg1 = ?,obrPathImg2 = ?,obrPathPDF = ?,tblartistas_artId = ?,tblcategoria_catId = ?WHERE obrId = ?;";
+      
+      
+      try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, obrj.getObrId());
+            ps.setString(2, obrj.getObrNumCatalogo());
+            ps.setString(3, obrj.getObrTitulo());
+            ps.setString(4, obrj.getObrFechaRealizacion());
+            ps.setString(5, obrj.getObrPathImg1());
+            ps.setString(6, obrj.getObrPathImg2());
+            ps.setString(7, obrj.getObrPathPDF());
+            ps.setInt(8, obrj.getTblartistas_artId());
+            ps.setInt(9, obrj.getTblcategoria_catId());
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            
+        }
+      
+      return true;
+  }
       
       
       
