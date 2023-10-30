@@ -9,45 +9,48 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
     <body>
         <form action="controladorObra" method="POST" enctype="multipart/form-data">
-            
-           <div class="form-group">
-                <label for="txtID">NIS Artista:</label>
-                <input type="number" class="form-control" id="codigoartista" name="txtID" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="txtcodigoartista">Codigo Artista:</label>
-                <input type="number" class="form-control" id="codigoartista" name="txtcodigoartista" required>
-            </div>
-            <div class="form-group">
-                <label for="txtapellido">Apellido:</label>
-                <input type="text" class="form-control" id="apellido" name="txtapellido" required>
-            </div>
-            <div class="form-group">                   
-                <label for="txtnombre">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" name="txtnombre" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="txtlugarnacim">Lugar:</label>
-                <input type="text" class="form-control" id="lugar" name="txtlugarnacim" required>
-            </div>                
-            <div class="form-group">
-                <label for="txtfechanacimiento">Fecha de nacimiento</label>
-                <input type="date" class="form-control" id="fechanacimiento" name="txtfechanacimiento" required>
-            </div>
-            <div class="form-group">
-                <label for="imagen">Foto</label>
-                <input type="file" name="file" accept="image/jpeg">
-            </div>
+
+            NIS Obra:<br>
+            <input type="number" class="form-control" id="codigoartista" name="txtID" required>
+            <br><br>
+            Numero del Catalogo:<br>
+            <input type="number" class="form-control" id="numc" name="numc" required>
+            <br><br>
+
+            Titulo de la Obra: <br>
+            <input type="text" class="form-control" id="titulo" name="titulo" required>
+            <br><br>
+            Fecha Realizada:<br>
+            <input type="date" class="form-check" id="FechaR" name="FechaR" required>
             <br>
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <br>
+            Artista:
+            <input type="radio" id="id" name="Artist" value="1">Vulkan
+            <br>
+            <br>
+            
+            Categoria: <br>
+            <input type="text" class="form-control" id="Categ" name="Categ" required>
+            <br><br>
+            
+            
+            Foto 1: <br>
+            <input type="file" name="file" accept="image/png">
+            <br><br>
+            Foto 2: <br>
+            <input type="file" name="file1" accept="image/png">
+            <br><br>
+            PDF: <br>
+            <input type="file" name="file2" accept=".pdf">
+            <br>
+            <button type="submit" class="btn btn-primary" name="accion" value="agregarobraarte">Enviar</button>
 
         </form>
-        
+
     </body>
 </html>

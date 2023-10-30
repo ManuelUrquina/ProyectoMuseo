@@ -59,6 +59,50 @@ public class ObraArteDAO {
 
     }
     
+  public boolean agregarobra(ObraArtePojo poj){
+      
+      
+      String sql = "INSERT INTO museum.tblobraarte(obrId,obrNumCatalogo,obrTitulo,obrFechaRealizacion,"
+              + "obrPathImg1,obrPathImg2,obrPathPDF,tblartistas_artId,tblcategoria_catId)VALUES(?,?,?,?,?,?,?,?,?);";
+      
+      try {
+          
+          
+          
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            ps.setInt(1, poj.getObrId());
+            ps.setString(2, poj.getObrNumCatalogo());
+            ps.setString(3, poj.getObrTitulo());
+            ps.setString(4, poj.getObrFechaRealizacion());
+            ps.setString(5, poj.getObrPathImg1());
+            ps.setString(6, poj.getObrPathImg2());
+            ps.setString(7, poj.getObrPathPDF());
+            ps.setInt(8, poj.getTblartistas_artId());
+            ps.setInt(9, poj.getTblcategoria_catId());
+            
+
+            ps.executeQuery(sql);
+            
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return true;
+    }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  }
     
     
     
@@ -69,5 +113,4 @@ public class ObraArteDAO {
     
     
     
-    
-}
+
