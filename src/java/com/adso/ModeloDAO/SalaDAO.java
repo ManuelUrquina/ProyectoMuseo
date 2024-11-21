@@ -18,68 +18,109 @@ import java.util.List;
  * @author ADSO
  */
 public class SalaDAO {
-    Conexion cn=new Conexion();
+
+    Conexion cn = new Conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
     SalaPOJO sal = new SalaPOJO();
     int p = 0;
-    
+
     public List listarsala() {
-        
-        ArrayList <SalaPOJO>list=new ArrayList<>();
-        
+
+        ArrayList<SalaPOJO> list = new ArrayList<>();
+
         String sql = "SELECT * FROM museum.tblsalas";
-        
-        try{
-          con=cn.getConnection();
-            ps=con.prepareStatement(sql);
-            rs=ps.executeQuery();
-            
-            while(rs.next()){
+
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
                 SalaPOJO spo = new SalaPOJO();
-                
+
                 spo.setSalId(rs.getInt("salId"));
                 spo.setSalNombre(rs.getString("salNombre"));
                 spo.setSalEdificio(rs.getString("salEdificio"));
                 spo.setSalPlanta(rs.getString("salPlanta"));
-                
+
                 list.add(spo);
-                
-                
+
             }
-            
-        }catch (SQLException e) {
-            
+
+        } catch (SQLException e) {
+            System.err.println(e);
         }
         return list;
-        
-        
-        
+
     }
-    
-    
-    public boolean addsala(SalaPOJO spo) {
-        
-        String sql= "INSERT INTO museum.tblsalas(salId,salNombre,salEdificio,salPlanta)"
-                + "VALUES( '" + spo.getSalId() + "' ,'" + spo.getSalNombre()+ "' "
-                + ",'" + spo.getSalEdificio()+ "' ,'" + spo.getSalPlanta()+ "' ,);" ;
-        
-        try{
-          con=cn.getConnection();
-            ps=con.prepareStatement(sql);
-            rs=ps.executeQuery(); 
-            
-            
-        }catch(SQLException e) {
-            
+
+    public SalaPOJO list(int id) {
+
+        String sql = "SELECT * FROM museum.tblsalas WHERE salId=" + id;
+
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                sal.setSalId(rs.getInt("salId"));
+                sal.setSalNombre(rs.getString("salNombre"));
+                sal.setSalEdificio(rs.getString("salEdificio"));
+                sal.setSalPlanta(rs.getString("salPlanta"));
+
+            }
+        } catch (SQLException e) {
+
         }
-        
-        return false;
-        
-        
+        return sal;
+
     }
-    
-    
-    
+
+    public boolean addsala(SalaPOJO so) {
+
+        String sql = "INSERT INTO museum.tblsalas(salId,salNombre,salEdificio,salPlanta)"
+                + "VALUES( '" + so.getSalId() + "' ,'" + so.getSalNombre() + "' "
+                + ",'" + so.getSalEdificio() + "' ,'" + so.getSalPlanta() + "');";
+
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+
+        }
+
+        return false;
+
+    }
+
+    public boolean editsala(SalaPOJO so) {
+        String sql = "UPDATE museum.tblsalas SET  salNombre = '" + so.getSalNombre() + "',salEdificio ='" + so.getSalEdificio() + ""
+                + "',salPlanta ='" + so.getSalPlanta() + "'WHERE salId =" + so.getSalId();
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
+    public boolean eliminarsala(int id) {
+        String sql = "DELETE FROM museum.tblsalas WHERE salId = " + id;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+
 }

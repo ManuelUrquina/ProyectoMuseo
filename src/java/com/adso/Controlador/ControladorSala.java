@@ -21,8 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 public class ControladorSala extends HttpServlet {
   String listar = "vistas/listarsala.jsp";
   String add = "vistas/addsala.jsp";
+  String edit = "vistas/editsala.jsp";
   SalaPOJO spo = new SalaPOJO();
   SalaDAO dao = new SalaDAO();
+  int id;
   
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -66,7 +68,7 @@ public class ControladorSala extends HttpServlet {
         String acceso = "";
         String action = request.getParameter("accion");
 
-        if (action.equalsIgnoreCase("listarobra")) {
+        if (action.equalsIgnoreCase("listarsala")) {
             acceso = listar;
         } else if (action.equalsIgnoreCase("add")) {
             acceso = add;
@@ -87,7 +89,32 @@ public class ControladorSala extends HttpServlet {
         
         
         
-    }
+         } else if (action.equalsIgnoreCase("editar")) {
+            request.setAttribute("idper", request.getParameter("id"));
+            acceso = edit;
+        } else if (action.equalsIgnoreCase("Actualizar")) {
+            
+            String id = request.getParameter("txtID");
+            String name = request.getParameter("txtNom");
+            String edif = request.getParameter("txtEdif");
+            String plan = request.getParameter("txtPlan");
+
+
+
+            spo.setSalId(Integer.parseInt(id));
+            spo.setSalNombre(name);
+            spo.setSalEdificio(edif);
+            spo.setSalPlanta(plan);
+ 
+            dao.editsala(spo);
+            acceso = listar;
+        }else if (action.equalsIgnoreCase("eliminar")) {
+            id = Integer.parseInt(request.getParameter("id"));
+            spo.setSalId(id);
+            dao.eliminarsala(id);
+            acceso = listar;
+        }
+        
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
     }
